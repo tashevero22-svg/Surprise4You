@@ -1,60 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I KNEW IT!</title>
-<style>
-body{background:linear-gradient(135deg,#ffe6f0,#ffccde);min-height:100vh;display:flex;justify-content:center;align-items:center;font-family:'Comic Sans MS',cursive;margin:0;padding:15px}
-.card{background:white;padding:28px 22px;border-radius:30px;max-width:380px;width:100%;box-shadow:0 15px 35px rgba(0,0,0,.15);text-align:center}
-h1{color:#ff2a6d;font-size:24px}
-.bold-only{font-size:34px;font-weight:900;color:#ff0055;margin:15px 0;letter-spacing:1px}
-p{color:#555;font-size:18px;line-height:1.5}
-.btn{border:none;padding:14px 30px;border-radius:30px;font-size:18px;font-weight:bold;cursor:pointer;margin:10px;min-width:120px;transition:0.3s}
-.yes{background:linear-gradient(90deg,#ff2a6d,#ff7aa2);color:white}
-.no{background:#f0f0f0;color:#555}
-#timer{font-weight:bold;color:#ff2a6d}
-#warning{color:red;font-weight:bold;display:none;animation:shake 0.3s infinite}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-#result{display:none}
-.gif{width:150px;border-radius:20px;margin:auto;display:block}
-</style>
-</head>
-<body>
-<div class="card" id="main">
-<img class="gif" src="https://media.tenor.com/2uyENRuvV-0AAAAi/cute.gif">
-<h1>Hey! Quick Question... 😳<br>Do you like me? 🥺</h1>
-<div id="timer">💣 Phone explodes in: <span id="count">15</span>s</div>
-<div id="warning">⚠️ TAP YES BEFORE IT EXPLODES! 💥</div>
-<div style="margin-top:20px">
-<button class="btn yes" id="yesBtn" onclick="yesClick()">YES! 💘</button>
-<button class="btn no" id="noBtn" onclick="noClick()">No 😒</button>
-</div>
-</div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Are you ready? 💘</title><style>body{background:#ffb3c6;min-height:100vh;display:flex;justify-content:center;align-items:center;font-family:system-ui,sans-serif;margin:0;padding:14px} .card{background:#fff;width:100%;max-width:360px;border-radius:28px;padding:30px 16px 40px;text-align:center;box-shadow:0 18px 36px rgba(0,0,0,.15);position:relative;min-height:420px} h1{color:#ff2a6d;font-weight:400;font-size:20px} .big-yes{background:linear-gradient(90deg,#ff2a6d,#ff1380);color:#fff;border:none;width:88%;padding:18px 0;border-radius:50px;font-size:22px;font-weight:700;box-shadow:0 12px 28px rgba(255,42,109,.4);margin:20px auto;display:block} .small-no{position:absolute;left:50%;transform:translateX(-50%);bottom:30px;background:#fff;border:1.5px solid #ddd;padding:10px 28px;border-radius:24px;font-size:15px;font-weight:400;color:#555} #timer{font-size:13px;background:#fff0f3;color:#ff2a6d;padding:6px 12px;border-radius:20px;display:inline-block} #warning{display:none;color:#ff0033;font-size:13px;margin-top:6px} #main,#result{display:none} .bold-only{font-size:30px;font-weight:900;color:#ff0055} .normal-text{font-weight:400;color:#555;font-size:16px} .shareBtn{margin-top:18px;background:#25D366;color:#fff;border:none;width:100%;padding:12px;border-radius:30px;font-size:15px;font-weight:400} .gif{width:120px}</style></head><body>
 
-<div class="card" id="result">
-<img class="gif" src="https://media.giphy.com/media/l0HlNaQ6gWfllcjDO/giphy.gif">
-<div class="bold-only">I KNEW IT! 😍💖</div>
-<p>
-Now you are officially mine! 🥰💑<br>
-No return, No exchange! 😜💋🔒
-</p>
-<p style="font-size:32px">💘✨</p>
-</div>
+<div class="card" id="ready"><img class="gif" src="https://media.tenor.com/2uyENRuvV-0AAAAi/cute.gif"><h1>Are you ready? 😏<br><span style="font-size:14px;color:#888">I have a question...</span></h1><button class="big-yes" onclick="startGame()">I'm Ready! 🫣</button></div>
 
-<script>
-const YOUR_NUMBER = "917005375447";
-let timeLeft = 15; let yesSize = 1;
-let noTexts = ["No 😒","Sure? 🤔","It will blast! 💣","Tap YES! 🥺"];
-const timer = setInterval(()=>{
-timeLeft--; document.getElementById('count').innerText = timeLeft;
-yesSize+=0.12; document.getElementById('yesBtn').style.transform=`scale(${yesSize})`;
-if(timeLeft<=8) document.getElementById('warning').style.display='block';
-if(timeLeft<=0){clearInterval(timer); document.getElementById('main').innerHTML=`<h1>💥 BOOM!</h1><p>Now you HAVE to say YES!</p><button class="btn yes" style="transform:scale(2.2)" onclick="yesClick()">OKAY YES! 💘</button>`;}
-},1000);
-function noClick(){let b=document.getElementById('noBtn');b.style.position='absolute';b.style.left=Math.random()*65+'%';b.style.top=Math.random()*70+'%';}
-function yesClick(){clearInterval(timer);document.getElementById('main').style.display='none';document.getElementById('result').style.display='block';
-let msg=`😍 I KNEW IT! She said YES! 🎉%0ALink: ${window.location.href}`; setTimeout(()=>{window.open(`https://wa.me/${YOUR_NUMBER}?text=${msg}`,'_blank');},800);}
-</script>
-</body>
-</html>
+<div class="card" id="main"><div id="timer">💣 Explodes in: <span id="count">15</span>s</div><div id="warning">Tap YES fast! 💥</div><button class="big-yes" id="yesBig" onclick="yesClick()">YES 💖✨</button><button class="small-no" id="noBtn" onmouseover="runNo()" ontouchstart="runNo()" onclick="runNo()">No 😢</button></div>
+
+<div class="card" id="result"><img class="gif" src="https://media.giphy.com/media/l0HlNaQ6gWfllcjDO/giphy.gif"><div class="bold-only">I KNEW IT! 😍</div><p class="normal-text">You are mine now! 🥰</p><button class="shareBtn" onclick="shareNow()">📤 Share to your friends and see if she loves you 💘</button></div>
+
+<script>const NUM="917005375447";function startGame(){document.getElementById('ready').style.display='none';document.getElementById('main').style.display='block';let t=15;let s=1;setInterval(()=>{t--;document.getElementById('count').innerText=t;let y=document.getElementById('yesBig');if(y){s+=0.4;y.style.transform=`scale(${s})`;}if(t<=8)document.getElementById('warning').style.display='block';},1000);}function runNo(){let b=document.getElementById('noBtn');b.style.left=Math.random()*70+'%';b.style.top=Math.random()*75+'%';b.style.bottom='auto';b.style.transform='none';}function yesClick(){document.getElementById('main').style.display='none';document.getElementById('result').style.display='block';setTimeout(()=>{window.open(`https://wa.me/${NUM}?text=${encodeURIComponent('😍 She said YES! '+location.href)}`,'_blank');},600);}function shareNow(){let txt=`😍 Does she love you? Check this! 💘👇 ${location.href}`;if(navigator.share){navigator.share({url:location.href,text:txt,title:'Love test'});}else{window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`,'_blank');}}</script></body></html>
