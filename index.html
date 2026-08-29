@@ -1,1 +1,60 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Surprise For You 💖</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff9a9e,#fecfef);font-family:Arial;padding:15px}.card{background:#fff;padding:28px 22px;border-radius:28px;text-align:center;box-shadow:0 20px 50px rgba(255,0,80,.3);max-width:410px;width:100%}h1{color:#ff2e63;margin:5px 0 8px;font-size:26px}.sub{color:#888;font-size:14px;margin-bottom:15px}input{width:100%;padding:14px;margin:7px 0;border:2px solid #ffc2d1;border-radius:12px;text-align:center;font-size:16px;outline:none}button{border:none;border-radius:50px;font-weight:800;cursor:pointer}.createBtn{width:100%;padding:15px;margin-top:12px;background:linear-gradient(90deg,#ff2e63,#ff0080);color:#fff;font-size:17px}#yesBtn{background:#ff2e63;color:#fff;padding:16px 45px;font-size:22px;position:relative;transition:transform .2s;box-shadow:0 8px 20px rgba(255,0,80,.3)}#noBtn{background:#fff;color:#555;padding:12px 28px;font-size:16px;position:fixed;left:62%;top:76%;z-index:9999;border:2px solid #eee;box-shadow:0 5px 15px rgba(0,0,0,.1)}img{width:150px;border-radius:15px;margin:10px 0}#result{color:#ff2e63;font-weight:700;word-break:break-all;margin-top:12px;font-size:13px;background:#fff0f3;padding:10px;border-radius:10px}.shareBtn{width:100%;padding:14px;margin-top:10px;background:#25D366;color:#fff;font-size:16px;border-radius:50px}.createOwnBtn{width:100%;padding:14px;margin-top:10px;background:#000;color:#fff;font-size:15px;border-radius:50px}</style></head><body><div class="card" id="createDiv"><div style="background:#fff0f3;color:#ff2e63;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:10px">💌 Step 1: Login to get reply</div><h1>💖 Create Surprise Link</h1><p class="sub">Enter your number - you will get her answer on WhatsApp</p><input id="crushName" placeholder="Her Name (e.g. Payal)"><input id="yourName" placeholder="Your Name (e.g. Aman)"><input id="waNum" type="tel" placeholder="Your WhatsApp No. (e.g. 919876543210)"><button class="createBtn" onclick="makeLink()">Create Link & Copy 🔗</button><div id="result"></div></div><div class="card" id="loveDiv" style="display:none"><h1 id="title">Do you love me? 🥺</h1><img src="https://media.tenor.com/2uyENRuvV-0AAAAi/cute.gif"><div style="margin-top:15px;position:relative;height:160px;display:flex;justify-content:center;align-items:center"><button id="yesBtn" onclick="yesClick()">YES 😍</button><button id="noBtn" onmouseover="noMove()" onclick="noMove()" ontouchstart="noMove()">NO 🙈</button></div></div><div class="card" id="celebrateDiv" style="display:none"><h1 style="font-size:50px;margin:0">💖😍🎉</h1><h1 id="yayText">YAY! I Knew It! 😘</h1><h2 id="loveText">I Love You Too! 💕</h2><img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" style="width:200px"><p class="sub" id="sendingText">Sending answer to WhatsApp...</p><button class="shareBtn" onclick="shareOwn()">💚 Share to Your Crush & Check If They Love You 😍</button><button class="createOwnBtn" onclick="createOwn()">✨ Create Your Own Link</button></div><script>let wa="";let crushGlobal="";let senderGlobal="";function checkURL(){const p=new URLSearchParams(location.search);const crush=p.get('crush');wa=p.get('wa');senderGlobal=p.get('sender')||"";if(crush){crushGlobal=crush;document.getElementById('createDiv').style.display='none';document.getElementById('loveDiv').style.display='block';document.getElementById('title').innerText=`${crush}, Do you love me? 🥺💖`;}}function makeLink(){const c=document.getElementById('crushName').value.trim();const s=document.getElementById('yourName').value.trim();const w=document.getElementById('waNum').value.trim();if(!c||!s||!w){alert("Fill all 3 fields! 💖");return;}const base=location.origin+location.pathname;const link=`${base}?crush=${encodeURIComponent(c)}&sender=${encodeURIComponent(s)}&wa=${encodeURIComponent(w)}`;document.getElementById('result').innerHTML=`✅ Link Ready!<br><br>${link}<br><br>👉 Send this to ${c} now!`;navigator.clipboard.writeText(link);}let scale=1;let n=0;function noMove(){n++;scale+=0.6;document.getElementById('yesBtn').style.transform=`scale(${scale})`;const btn=document.getElementById('noBtn');btn.style.left=Math.random()*65+10+'%';btn.style.top=Math.random()*65+10+'%';btn.innerText=["Are you sure? 🥺","Think again! 😭","Please? 🥺💖","Don't break heart 💔","Last chance! 😘"][n%5];}function yesClick(){document.getElementById('loveDiv').style.display='none';document.getElementById('celebrateDiv').style.display='block';document.getElementById('yayText').innerText=`YAY! I Knew It! 😘`;document.getElementById('loveText').innerText=`I Love You Too ${crushGlobal}! 💕`;const msg=`💖 YAY! ${crushGlobal} said YES! 😍 She clicked YES on your surprise link! 🎉`;setTimeout(()=>{const num=wa?wa.replace(/[^0-9]/g,''):'';if(num)location.href=`https://wa.me/${num}?text=${encodeURIComponent(msg)}`;},1500);}function shareOwn(){const base=location.origin+location.pathname;const text=`💖 I found this cute love test! Check if your crush loves you 😍👉 ${base}`;location.href=`https://wa.me/?text=${encodeURIComponent(text)}`;}function createOwn(){location.href=location.origin+location.pathname;}</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I KNEW IT!</title>
+<style>
+body{background:linear-gradient(135deg,#ffe6f0,#ffccde);min-height:100vh;display:flex;justify-content:center;align-items:center;font-family:'Comic Sans MS',cursive;margin:0;padding:15px}
+.card{background:white;padding:28px 22px;border-radius:30px;max-width:380px;width:100%;box-shadow:0 15px 35px rgba(0,0,0,.15);text-align:center}
+h1{color:#ff2a6d;font-size:24px}
+.bold-only{font-size:34px;font-weight:900;color:#ff0055;margin:15px 0;letter-spacing:1px}
+p{color:#555;font-size:18px;line-height:1.5}
+.btn{border:none;padding:14px 30px;border-radius:30px;font-size:18px;font-weight:bold;cursor:pointer;margin:10px;min-width:120px;transition:0.3s}
+.yes{background:linear-gradient(90deg,#ff2a6d,#ff7aa2);color:white}
+.no{background:#f0f0f0;color:#555}
+#timer{font-weight:bold;color:#ff2a6d}
+#warning{color:red;font-weight:bold;display:none;animation:shake 0.3s infinite}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+#result{display:none}
+.gif{width:150px;border-radius:20px;margin:auto;display:block}
+</style>
+</head>
+<body>
+<div class="card" id="main">
+<img class="gif" src="https://media.tenor.com/2uyENRuvV-0AAAAi/cute.gif">
+<h1>Hey! Quick Question... 😳<br>Do you like me? 🥺</h1>
+<div id="timer">💣 Phone explodes in: <span id="count">15</span>s</div>
+<div id="warning">⚠️ TAP YES BEFORE IT EXPLODES! 💥</div>
+<div style="margin-top:20px">
+<button class="btn yes" id="yesBtn" onclick="yesClick()">YES! 💘</button>
+<button class="btn no" id="noBtn" onclick="noClick()">No 😒</button>
+</div>
+</div>
+
+<div class="card" id="result">
+<img class="gif" src="https://media.giphy.com/media/l0HlNaQ6gWfllcjDO/giphy.gif">
+<div class="bold-only">I KNEW IT! 😍💖</div>
+<p>
+Now you are officially mine! 🥰💑<br>
+No return, No exchange! 😜💋🔒
+</p>
+<p style="font-size:32px">💘✨</p>
+</div>
+
+<script>
+const YOUR_NUMBER = "917005375447";
+let timeLeft = 15; let yesSize = 1;
+let noTexts = ["No 😒","Sure? 🤔","It will blast! 💣","Tap YES! 🥺"];
+const timer = setInterval(()=>{
+timeLeft--; document.getElementById('count').innerText = timeLeft;
+yesSize+=0.12; document.getElementById('yesBtn').style.transform=`scale(${yesSize})`;
+if(timeLeft<=8) document.getElementById('warning').style.display='block';
+if(timeLeft<=0){clearInterval(timer); document.getElementById('main').innerHTML=`<h1>💥 BOOM!</h1><p>Now you HAVE to say YES!</p><button class="btn yes" style="transform:scale(2.2)" onclick="yesClick()">OKAY YES! 💘</button>`;}
+},1000);
+function noClick(){let b=document.getElementById('noBtn');b.style.position='absolute';b.style.left=Math.random()*65+'%';b.style.top=Math.random()*70+'%';}
+function yesClick(){clearInterval(timer);document.getElementById('main').style.display='none';document.getElementById('result').style.display='block';
+let msg=`😍 I KNEW IT! She said YES! 🎉%0ALink: ${window.location.href}`; setTimeout(()=>{window.open(`https://wa.me/${YOUR_NUMBER}?text=${msg}`,'_blank');},800);}
+</script>
+</body>
+</html>
