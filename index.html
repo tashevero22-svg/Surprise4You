@@ -1,34 +1,40 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Love</title><style>body{background:#f8a4b8;min-height:100vh;display:flex;justify-content:center;align-items:center;font-family:system-ui,sans-serif;margin:0;padding:14px} .card{background:#fff;width:100%;max-width:360px;border-radius:26px;box-shadow:0 16px 32px rgba(0,0,0,.15);text-align:center;min-height:500px;display:flex;flex-direction:column;overflow:hidden;position:relative} .content{flex:1;padding:30px 16px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center} h1{font-weight:400;font-size:27px;color:#222} .small{font-size:13px;color:#888;font-weight:400} .big{cursor:pointer;pointer-events:auto;background:#ff1a75;color:#fff;border:none;width:92%;padding:18px 0;border-radius:50px;font-size:19px;font-weight:700;margin-top:26px;position:relative;z-index:999;-webkit-tap-highlight-color:transparent} .bottom{border-top:1.5px solid #000;display:flex;height:56px;margin-top:auto;position:relative} .bb{flex:1;border:none;background:#fff;font-size:18px;font-weight:400} .bb-yes{border-right:1.5px solid #000} #main,#final{display:none} .knew{color:#ff0f6b;font-size:28px;font-weight:900} .mine{font-weight:400;color:#555} .share{margin-top:auto;margin-bottom:20px;border:none;background:none;font-size:16px;font-weight:500} #timer{font-size:14px;background:#ffe6ec;color:#ff1a75;padding:6px 12px;border-radius:20px;font-weight:700;margin-top:8px} #warn{display:none;color:red;font-size:13px}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do you love me?</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#ffb6d1;font-family:'Segoe UI',sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;overflow:hidden}
+.card{background:#fff;width:88%;max-width:340px;padding:35px 22px;border-radius:30px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,0.18)}
+h1{font-size:26px;margin:10px 0}
+#toast{position:fixed;top:25px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:10px 18px;border-radius:25px;font-size:14px;display:none;z-index:9999;animation:pop 0.3s}
+@keyframes pop{0%{transform:translateX(-50%) scale(0.5)}100%{transform:translateX(-50%) scale(1)}}
+.btn{border:none;padding:12px 28px;border-radius:16px;font-size:20px;font-weight:bold;cursor:pointer;transition:all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)}
+#yesBtn{background:#fff;border:3px solid #ff2e7e;color:#000;min-width:100px;box-shadow:0 0 0 4px #ffb6d1;transition:all 0.5s ease}
+#noBtn{background:transparent;margin-top:20px;font-size:24px;position:relative;left:0;top:0;transition:all 0.3s ease}
+#final{display:none}
+.shareBtn{background:#25D366;color:#fff;padding:14px;width:100%;border-radius:30px;border:none;font-size:16px;font-weight:bold;margin-top:12px;cursor:pointer}
+.playBtn{background:#ff2e7e;color:#fff;padding:14px;width:100%;border-radius:30px;border:none;font-size:16px;font-weight:bold;margin-top:12px;cursor:pointer}
+</style>
+</head>
+<body>
 
-<div class="card" id="ready"><div class="content"><h1>Are Your sure<br>You're Ready?</h1><p class="small">I have a question...</p><button class="big" id="readyBtn">I'm Ready! 🫣</button></div></div>
+<div id="toast"></div>
 
-<div class="card" id="main"><div class="content"><p style="font-size:23px;color:#111;font-weight:400;margin:0">Do you love me?</p><p style="font-size:14px;font-weight:400;color:#222;margin:16px 0 8px;text-align:center">Tap yes before your phone<br>explode 💣💥</p><div id="timer">💣 <span id="c">15</span>s</div><div id="warn">TAP YES! 💥</div></div><div class="bottom"><button class="bb bb-yes" id="yesBtn">Yes</button><button class="bb" id="noBtn">No 🙈</button></div></div>
+<!-- READY PAGE -->
+<div class="card" id="readyPage">
+<div style="font-size:55px">💖✨</div>
+<h1>Surprise For You</h1>
+<p>Tap ready for a challenge 😏</p>
+<button class="btn" style="background:#ff2e7e;color:#fff;margin-top:10px" onclick="startGame()">I'm Ready! 👇</button>
+</div>
 
-<div class="card" id="final"><div class="content"><div class="knew">I KNEW IT! 😉</div><p class="mine">You are mine now! 🥰</p><button class="share" onclick="location.reload()">Play Again 💘</button><button class="share" onclick="shareNow()" style="color:#25D366">Share option here</button></div></div>
-
-<script>
-const NUM="917005375447";
-document.getElementById('readyBtn').addEventListener('click', start);
-document.getElementById('readyBtn').addEventListener('touchstart', (e)=>{e.preventDefault(); start();}, {passive:false});
-document.getElementById('yesBtn').addEventListener('click', yesClick);
-
-function start(){
-  document.getElementById('ready').style.display='none';
-  document.getElementById('main').style.display='flex';
-  let t=15; let sc=1;
-  setInterval(()=>{
-    t--; document.getElementById('c').innerText=t;
-    let y=document.getElementById('yesBtn');
-    if(y){ sc+=0.5; y.style.transform=`scale(${sc})`; y.style.background='#ff1a75'; y.style.color='#fff'; y.style.zIndex='99'; }
-    if(t<=8) document.getElementById('warn').style.display='block';
-  },1000);
-}
-const noBtn=document.getElementById('noBtn');
-function run(){ noBtn.style.position='absolute'; noBtn.style.left=Math.random()*60+'%'; noBtn.style.top=Math.random()*75+'%'; noBtn.style.padding='10px 18px'; noBtn.style.border='1.5px solid #000'; noBtn.style.borderRadius='20px'; noBtn.style.background='#fff'; }
-noBtn.addEventListener('mouseover', run);
-noBtn.addEventListener('touchstart', (e)=>{e.preventDefault(); run();}, {passive:false});
-noBtn.addEventListener('click', (e)=>{e.preventDefault(); run();});
-
-function yesClick(){ document.getElementById('main').style.display='none'; document.getElementById('final').style.display='flex'; setTimeout(()=>{window.open(`https://wa.me/${NUM}?text=${encodeURIComponent('YES! '+location.href)}`,'_blank');},500); }
-function shareNow(){ window.open(`https://wa.me/?text=${encodeURIComponent('Try! '+location.href)}`,'_blank'); }
-</script></body></html>
+<!-- MAIN GAME -->
+<div class="card" id="mainPage" style="display:none">
+<div style="font-size:50px">💖✨</div>
+<h1>Do you love me?</h1>
+<p style="margin-top:5px;font-weight:bold">Alert 🚨<br><span style="font-weight:normal;font-size:15px">Tap yes before your phone explode 💣💥</span></p>
+<div id="gameArea" style="position:relative;height:180px;margin-top:20px">
+<button class="btn" id="yesBtn" onclick
